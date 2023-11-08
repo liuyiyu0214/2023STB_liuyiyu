@@ -18,8 +18,9 @@ foodshop$close_date <- as.integer(foodshop$close_date)
 
 str(foodshop)
 
-foodshop<-foodshop%>%filter(open_date!= '') %>%select(name,type,status,open_date,close_date,address)
-str(foodshop)
+foodshop<-foodshop%>%
+  filter(open_date!= '') %>%
+  select(name,type,status,open_date,close_date,address)
 table(foodshop$status)
 
 range(foodshop$open_date, na.rm = T)
@@ -30,7 +31,7 @@ foodshop$open_year<-substr(foodshop$open_date,1,4)
 range(foodshop$close_date, na.rm = T)
 foodshop$close_year<-substr(foodshop$close_date,1,4)
 
-foodshop$district<-substr(foodshop$address,7,9)
+foodshop$district<-substr(foodshop$address,5,7)
 table(foodshop$district)
 foodshop$district <- ifelse(foodshop$district%in%c("도 제","시 망","시 수","시 영","시 원","시 일"),NA,foodshop$district)
 table(foodshop$district)
